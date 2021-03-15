@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+    Diets list
+{% endblock %}
+{% block content %}
+    <h2>Diets:</h2>
+    {% for diet in pages %}
+    <ul>
+        <li>{{ diet.name }} <a class="btn btn-info" href="/diet/{{ diet.id }}">To diet</a>
+                            <a class="btn btn-dark" href="/diet/update/{{ diet.id }}">modify</a>
+                            <a class="btn btn-danger" href="/diet/delete/{{ diet.id }}">delete</a>
+        </li>
+    </ul>
+    {% endfor %}
+    <div>
+         {% if pages.has_other_pages %}
+        <ul class="pagination justify-content-center">
+            {% if pages.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ pages.previous_page_number }}"><
+                    previous</a></li>
+            {% endif %}
+
+            {% for page in pages.paginator.page_range %}
+                {% if pages.number == page %}
+                    <li class="page-item disabled"><a class="page-link" href="?page={{ page }}"> {{ page }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page }}"> {{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if pages.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ pages.next_page_number }}">> next</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+    </div>
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'index' %}" class="btn btn-primary"> Index </a>
+    </div>
+{% endblock %}

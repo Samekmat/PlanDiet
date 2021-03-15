@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ exercise.name }}</h2>
+    <ul>
+        <li>Description: {{ exercise.description }}</li>
+        <li>Difficulty: {{ exercise.difficulty }}</li>
+        <li>Category:
+            {% if exercise.category_id == 1 %}
+                Endurance
+            {% endif %}
+
+            {% if exercise.category_id == 2 %}
+                Strength
+            {% endif %}
+
+            {% if exercise.category_id == 3 %}
+                Flexibility
+            {% endif %}
+
+            {% if exercise.category_id == 4 %}
+                Balance
+                {% endif %}
+        </li>
+        <li>Muscle parts involved:
+            <ul>
+                {% for muscle in exercise.muscles.all %}
+                    <li>{{ muscle.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li>Sport name:
+            <ul>
+                {% for sport in exercise.type.all %}
+                    <li>{{ sport.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+{% endblock %}
