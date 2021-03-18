@@ -88,6 +88,9 @@ class Plan(models.Model):
     def get_absolute_url(self):
         return reverse('plan', kwargs={'pk': self.pk})
 
+    def __str__(self):
+        return self.name
+
 
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=24, unique=True)

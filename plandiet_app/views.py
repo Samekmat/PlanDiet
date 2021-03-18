@@ -248,3 +248,11 @@ class MacroCalculatorView(View):
             cpm = cpm_calc(goal, bmr, activity)
 
         return render(request, 'macrocalculator.html', {'form': form, 'bmr': bmr, 'cpm': cpm})
+
+
+class ProfileView(View):
+    def get(self, request):
+        if CustomUser.is_authenticated:
+            current_user = request.user
+            return render(request, 'profile.html', {'current_user': current_user})
+        return render(request, 'profile.html')

@@ -228,3 +228,9 @@ def test_register(client, user_data):
 def test_macro_calc(client):
     resp = client.get(reverse('macro-calc'))
     assert resp.status_code == 200
+
+
+@pytest.mark.django_db
+def test_profile(client):
+    response = client.get(reverse('profile'))
+    assert response.status_code == 200

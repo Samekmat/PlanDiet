@@ -19,7 +19,7 @@ from django.urls import path
 from plandiet_app.views import ExerciseView, ExerciseListView, LoginView, RegistrationFormView, Index, LogoutView,\
     CategoryListView, CategoryView, DietView, DietCreateView,\
     DietUpdateView, DietDeleteView, DietListView, PlanListView, PlanView, PlanCreateView, PlanUpdateView,\
-    PlanDeleteView, MacroCalculatorView
+    PlanDeleteView, MacroCalculatorView, ProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,5 +42,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('register/', RegistrationFormView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('profile/', ProfileView.as_view(), name='profile'),
     path('macro_calculator/', MacroCalculatorView.as_view(), name='macro-calc'),
 ]

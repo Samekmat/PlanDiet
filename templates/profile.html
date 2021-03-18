@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    User's profile
+{% endblock %}
+{% block content %}
+    <div class="container">
+    <h2>Profile</h2>
+        <p>Username: {{ current_user.username }}</p>
+        <p>First_name: {{ current_user.first_name }}</p>
+        <p>Last_name: {{ current_user.last_name }}</p>
+        <p>E-mail: {{ current_user.email }}</p>
+        <p>Age: {{ current_user.age }}</p>
+        <p>Height: {{ current_user.height }}</p>
+        <p>Weight: {{ current_user.weight }}</p>
+        <p>Sex: {{ current_user.sex }}</p>
+        <p>Plan: {{ current_user.plan }} <a href="/plan/{{ current_user.plan.id }}">To plan</a> </p>
+        <p>Diet: {{ current_user.diet }} <a href="/plan/{{ current_user.diet.id }}">To diet</a></p>
+    </div>
+{% endblock %}
