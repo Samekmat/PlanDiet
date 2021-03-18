@@ -17,19 +17,16 @@ from django.contrib import admin
 from django.urls import path
 
 from plandiet_app.views import ExerciseView, ExerciseListView, LoginView, RegistrationFormView, Index, LogoutView,\
-    MuscleGroupView, CategoryListView, CategoryView, SportTypeView, SportTypeListView, DietView, DietCreateView,\
-    DietUpdateView, DietDeleteView, DietListView, PlanListView, PlanView,PlanCreateView, PlanUpdateView,\
+    CategoryListView, CategoryView, DietView, DietCreateView,\
+    DietUpdateView, DietDeleteView, DietListView, PlanListView, PlanView, PlanCreateView, PlanUpdateView,\
     PlanDeleteView, MacroCalculatorView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('exercise/<int:id>/', ExerciseView.as_view(), name='exercise'),
     path('exercise_list/', ExerciseListView.as_view(), name='exercise-list'),
-    path('exercise_muscles/<int:id>/', MuscleGroupView.as_view(), name='exercise-muscles'),
     path('categories/', CategoryListView.as_view(), name='categories'),
     path('category/<int:id>/', CategoryView.as_view(), name='category'),
-    path('exercise_type/<int:id>/', SportTypeView.as_view(), name='exercise-type'),
-    path('exercise_type_list/', SportTypeListView.as_view(), name='exercise-type-list'),
     path('diet_list/', DietListView.as_view(), name='diet-list'),
     path('diet/<int:pk>/', DietView.as_view(), name='diet'),
     path('diet/add/', DietCreateView.as_view(), name='diet-add'),

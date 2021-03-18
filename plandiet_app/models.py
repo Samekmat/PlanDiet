@@ -57,7 +57,7 @@ class Exercise(models.Model):
     name = models.CharField(max_length=124)
     description = models.TextField()
     difficulty = models.CharField(choices=DIFFICULTIES, max_length=60)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, default=None)
     muscles = models.ManyToManyField(MuscleGroup)
     type = models.ManyToManyField(SportType)
 
@@ -82,8 +82,8 @@ class Diet(models.Model):
 
 class Plan(models.Model):
     name = models.CharField(max_length=60)
-    diet = models.ForeignKey(Diet, on_delete=models.CASCADE)
-    exercises = models.ManyToManyField(Exercise)
+    diet = models.ForeignKey(Diet, on_delete=models.CASCADE, null=True, default=None)
+    exercises = models.ManyToManyField(Exercise, default=None)
 
     def get_absolute_url(self):
         return reverse('plan', kwargs={'pk': self.pk})

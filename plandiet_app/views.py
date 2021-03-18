@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.views import View
 from django.views.generic import FormView, CreateView, UpdateView, DeleteView
 from .models import Exercise, CustomUser, Category, Diet, Plan
@@ -48,7 +49,8 @@ class LoginView(View):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return redirect(request.META['HTTP_REFERER'])
+        # return redirect(request.META['HTTP_REFERER'])
+        return redirect(reverse('index'))
 
 
 class RegistrationFormView(FormView):
@@ -79,12 +81,6 @@ class Index(View):
         return render(request, 'index.html')
 
 
-class MuscleGroupView(View):
-    def get(self, request, id):
-        exercise = Exercise.objects.get(pk=id)
-        return render(request, 'musclegroup.html', {'exercise': exercise})
-
-
 class CategoryListView(View):
     def get(self, request):
         categories = Category.objects.all()
@@ -95,18 +91,6 @@ class CategoryView(View):
     def get(self, request, id):
         category = Category.objects.get(pk=id)
         return render(request, 'category.html', {'category': category})
-
-
-class SportTypeView(View):
-    def get(self, request, id):
-        exercise = Exercise.objects.get(pk=id)
-        return render(request, 'sporttype.html', {'exercise': exercise})
-
-
-class SportTypeListView(View):
-    def get(self, request):
-        exercises = Exercise.objects.all()
-        return render(request, 'sporttypelist.html', {'exercises': exercises})
 
 
 class DietListView(View):
@@ -131,15 +115,16 @@ class DietView(View):
 
 
 class DietCreateView(PermissionRequiredMixin, CreateView):
-    permission_required = 'DS_app.add_diet'
+    permission_required = 'plandiet_app.add_diet'
     form_class = DietModelForm
     template_name = 'diets/diet_create.html'
-    diet = Diet.objects.latest('id')
-    success_url = f'/diet/{diet.id}'
+
+    def get_success_url(self):
+        return reverse("diet", kwargs={'pk': self.object.pk})
 
 
 class DietUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'DS_app.change_diet'
+    permission_required = 'plandiet_app.change_diet'
     form_class = DietModelForm
     template_name = 'diets/diet_create.html'
 
@@ -149,7 +134,7 @@ class DietUpdateView(PermissionRequiredMixin, UpdateView):
 
 
 class DietDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'DS_app.delete_diet'
+    permission_required = 'plandiet_app.delete_diet'
     template_name = 'diets/diet_delete.html'
     success_url = '/diet_list'
 
@@ -179,15 +164,16 @@ class PlanView(View):
 
 
 class PlanCreateView(PermissionRequiredMixin, CreateView):
-    permission_required = 'DS_app.add_plan'
+    permission_required = 'plandiet_app.add_plan'
     form_class = PlanForm
     template_name = 'plans/plan_create.html'
-    plan = Plan.objects.latest('id')
-    success_url = f'/plan/{plan.id}'
+
+    def get_success_url(self):
+        return reverse("plan", kwargs={'pk': self.object.pk})
 
 
 class PlanUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'DS_app.change_plan'
+    permission_required = 'plandiet_app.change_plan'
     form_class = PlanForm
     template_name = 'plans/plan_update.html'
 
@@ -197,7 +183,7 @@ class PlanUpdateView(PermissionRequiredMixin, UpdateView):
 
 
 class PlanDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'DS_app.delete_plan'
+    permission_required = 'plandiet_app.delete_plan'
     template_name = 'plans/plan_delete.html'
     success_url = '/plan_list'
 
@@ -236,7 +222,16 @@ def cpm_calc(goal, bmr, activity):
 
 class MacroCalculatorView(View):
     def get(self, request):
-        form = MacroCalculatorForm(initial={})
+        if CustomUser.is_authenticated:
+            current_user = request.user
+            form = MacroCalculatorForm(initial={
+                'age': current_user.age,
+                'height': current_user.height,
+                'weight': current_user.weight,
+                'sex': current_user.sex,
+            })
+            return render(request, 'macrocalculator.html', {'form': form})
+        form = MacroCalculatorForm()
         return render(request, 'macrocalculator.html', {'form': form})
 
     def post(self, request):
