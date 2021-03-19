@@ -18,7 +18,7 @@ class ExerciseView(View):
 class ExerciseListView(View):
     def get(self, request):
         exercises = Exercise.objects.all()
-        paginator = Paginator(exercises, 20)
+        paginator = Paginator(exercises, 18)
         page = request.GET.get('page', 1)
         try:
             pages = paginator.page(page)
@@ -126,7 +126,7 @@ class DietCreateView(PermissionRequiredMixin, CreateView):
 class DietUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'plandiet_app.change_diet'
     form_class = DietModelForm
-    template_name = 'diets/diet_create.html'
+    template_name = 'diets/diet_update.html'
 
     def get_object(self):
         id_ = self.kwargs.get("pk")

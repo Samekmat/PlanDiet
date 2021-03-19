@@ -3,12 +3,12 @@
     Update
 {% endblock %}
 {% block content %}
-    <h2>Update {{ object.name }}</h2>
 
-    <form method="post">
+    <form method="post" class="form-signin" style="margin-top: 50px">
+    <h2>Update {{ object.name }}</h2>
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="save">
+        <input type="submit" value="save" class="widthe btn btn-danger btn-lg">
     </form>
 
 {% endblock %}

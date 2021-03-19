@@ -13,7 +13,7 @@
         <p>Height: {{ current_user.height }}</p>
         <p>Weight: {{ current_user.weight }}</p>
         <p>Sex: {{ current_user.sex }}</p>
-        <p>Plan: {{ current_user.plan }} <a href="/plan/{{ current_user.plan.id }}">To plan</a> </p>
-        <p>Diet: {{ current_user.diet }} <a href="/plan/{{ current_user.diet.id }}">To diet</a></p>
+        <p>Plan:  <a class="btn btn-light btn-link" href="/plan/{{ current_user.plan.id }}">{{ current_user.plan }}</a> </p>
+        <p>Diet:  <a class="btn btn-light btn-link" href="/plan/{{ current_user.diet.id }}">{{ current_user.diet }}</a></p>
     </div>
 {% endblock %}

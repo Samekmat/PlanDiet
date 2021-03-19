@@ -3,7 +3,8 @@
     Plan no.{{ plan.pk }}
 {% endblock %}
 {% block content %}
-    <h2>Plan {{ plan.name }}</h2>
+    <div class="plan-box">
+    <h2 class="p-lower">Plan {{ plan.name }}</h2>
     <p><b>Diet:</b> {{ plan.diet }}</p>
     <p>Exercises list:</p>
     <ul>
@@ -15,4 +16,5 @@
 
     </ul>
     <a class="btn btn-outline-dark" href="{% url 'plan-list' %}">To plans list</a>
+    </div>
 {% endblock %}

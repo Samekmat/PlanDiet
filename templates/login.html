@@ -3,15 +3,17 @@
     Login page
 {% endblock %}
 {% block content %}
-    <h1>Login</h1>
+
     {% if error %}
     <h3>{{ error }}</h3>
     {% endif %}
-    <form method="post">
+    <div class="form-box">
+    <form method="post" class="form-signin">
+    <h2 class="form-signin-heading p-lower">Please Log in</h2>
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="login">
-
+        <p class="p-lower">Register <a href="/register">new account</a></p>
+        <input type="submit" value="Log in" class="btn btn-lg btn-primary form-control">
     </form>
-    Register <a href="/register">new account</a>
+    </div>
 {% endblock %}

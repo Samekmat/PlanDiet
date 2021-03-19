@@ -6,17 +6,26 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
 </head>
 <body class="p-3 mb-2 bg-secondary text-white">
+
+    <div class="container">
     {% block content %}
 
     {% endblock %}
-<footer>
+    </div>
+
+<footer class="footer">
+    <div class="container">
+    <p class="text-muted">
     {% if user.is_authenticated %}
                 logged in <a href="/logout">Log out</a>
             {% else %}
                 not logged in <a href="/login">Log in</a>
             {% endif %}
+    </p>
+    </div>
 </footer>
 </body>
 </html>

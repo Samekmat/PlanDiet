@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Categories:</h2>
+    <h2>Categories :</h2>
     {% for category in categories %}
     <ul>
-        <li>{{ category.name }} <a class="btn btn-danger btn-sm" href="/category/{{ category.id }}">To category</a> </li>
+        <li> <a class="btn btn-danger btn-sm btn-link widthe" href="/category/{{ category.id }}">{{ category.name }}</a> </li>
     </ul>
     {% endfor %}
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'index' %}" class="btn btn-primary"> Index </a>
+    </div>
 {% endblock %}

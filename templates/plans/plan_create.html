@@ -3,12 +3,12 @@
     Add
 {% endblock %}
 {% block content %}
-    <h2>Add plan</h2>
 
-    <form method="post">
+    <form method="post" class="form-signin" style="margin-top: 50px">
+        <h2>Add plan</h2>
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="add">
+        <input type="submit" value="add" class="widthe btn btn-warning btn-lg">
     </form>
 
 {% endblock %}

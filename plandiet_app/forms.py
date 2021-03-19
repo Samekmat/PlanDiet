@@ -12,8 +12,8 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
-    login = forms.CharField(label='Your login')
-    password = forms.CharField(label='Your password', widget=forms.PasswordInput)
+    login = forms.CharField(label='Your login', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label='Your password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
 def username_unique(username):
@@ -22,16 +22,55 @@ def username_unique(username):
 
 
 class RegistrationForm(forms.Form):
-    username = forms.CharField(label='Login', validators=[username_unique, ])
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
-    first_name = forms.CharField(label='First_name', required=False)
-    last_name = forms.CharField(label='Last_name', required=False)
-    email = forms.EmailField(label='Email', required=False)
-    age = forms.IntegerField(label='Age', required=False)
-    height = forms.IntegerField(label='Height', required=False)
-    weight = forms.FloatField(label='Weight', required=False)
-    sex = forms.ChoiceField(label='Sex', choices=SEX, required=False)
+    username = forms.CharField(
+        label='Login',
+        validators=[username_unique, ],
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    password1 = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+    password2 = forms.CharField(
+        label='Repeat password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+    first_name = forms.CharField(
+        label='First_name',
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    last_name = forms.CharField(
+        label='Last_name',
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    email = forms.EmailField(
+        label='Email',
+        required=False,
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
+    )
+    age = forms.IntegerField(
+        label='Age',
+        required=False,
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
+    )
+    height = forms.IntegerField(
+        label='Height',
+        required=False,
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
+    )
+    weight = forms.FloatField(
+        label='Weight',
+        required=False,
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
+    )
+    sex = forms.ChoiceField(
+        label='Sex',
+        choices=SEX,
+        required=False,
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -43,6 +82,14 @@ class DietModelForm(forms.ModelForm):
     class Meta:
         model = Diet
         fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'caloric_demand': forms.NumberInput(attrs={'class': 'form-control'}),
+            'carbs_demand': forms.NumberInput(attrs={'class': 'form-control'}),
+            'protein_demand': forms.NumberInput(attrs={'class': 'form-control'}),
+            'fat_demand': forms.NumberInput(attrs={'class': 'form-control'}),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 
 class PlanForm(forms.ModelForm):
@@ -51,12 +98,17 @@ class PlanForm(forms.ModelForm):
     class Meta:
         model = Plan
         fields = ['name', 'diet', 'exercises']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'diet': forms.Select(attrs={'class': 'form-control'}),
+            'exercises': forms.SelectMultiple(attrs={'class': 'form-control'}),
+        }
 
 
 class MacroCalculatorForm(forms.Form):
-    age = forms.IntegerField(label='Age')
-    height = forms.IntegerField(label='Height')
-    weight = forms.FloatField(label='Weight')
-    sex = forms.ChoiceField(label='Sex', choices=SEX)
-    activity = forms.ChoiceField(label='Activity', choices=ACTIVITY)
-    goal = forms.ChoiceField(label='Goal', choices=GOAL)
+    age = forms.IntegerField(label='Age', widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    height = forms.IntegerField(label='Height', widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    weight = forms.FloatField(label='Weight', widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    sex = forms.ChoiceField(label='Sex', choices=SEX, widget=forms.Select(attrs={'class': 'form-control'}))
+    activity = forms.ChoiceField(label='Activity', choices=ACTIVITY, widget=forms.Select(attrs={'class': 'form-control'}))
+    goal = forms.ChoiceField(label='Goal', choices=GOAL, widget=forms.Select(attrs={'class': 'form-control'}))

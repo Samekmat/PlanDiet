@@ -3,7 +3,8 @@
     Diet no.{{ diet.id }}
 {% endblock %}
 {% block content %}
-    <h2>Diet {{ diet.name }}</h2>
+    <div class="diet-box">
+    <h2 class="p-lower">Diet {{ diet.name }}</h2>
     <p>{{ diet.description }}</p>
     <ul>
         <li>Calories: {{ diet.caloric_demand }} kcal</li>
@@ -12,4 +13,5 @@
         <li>Fats: {{ diet.fat_demand }} g</li>
     </ul>
     <a class="btn btn-outline-dark" href="{% url 'diet-list' %}">To diets list</a>
+    </div>
 {% endblock %}
