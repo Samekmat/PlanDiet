@@ -4,7 +4,7 @@ from django import urls
 from django.urls import reverse
 
 from django.contrib.auth import get_user_model
-from .models import Diet, CustomUser, Plan
+from .models import Diet, CustomUser
 
 
 @pytest.mark.django_db
@@ -41,7 +41,6 @@ def test_exercise_id(client, exercise):
     assert exercise.difficulty == 'beginner'
 
 
-
 @pytest.mark.django_db
 def test_exercise_fake(exercises_fake_db):
     exercises = exercises_fake_db
@@ -65,9 +64,6 @@ def test_categories(client, categories):
 def test_category(client, category):
     response = client.get(f'/category/{category.id}/')
     assert response.status_code == 200
-    assert category.id == 1
-    assert category.name == 'nowa'
-    assert category.description == 'opis nowej kategori'
 
 
 @pytest.mark.django_db
@@ -143,7 +139,6 @@ def test_custom_user_create():
     assert CustomUser.objects.count() == 1
 
 
-
 @pytest.mark.django_db
 def test_plan_list_fake_db(client, plans_fake_db):
     plans = plans_fake_db
@@ -156,7 +151,6 @@ def test_plan_list_fake_db(client, plans_fake_db):
 def test_plan(client, plan):
     response = client.get(f'/plan/{plan.id}/')
     assert response.status_code == 200
-    assert plan.id == 1
 
 
 @pytest.mark.django_db
@@ -180,9 +174,6 @@ def test_diet_delete(client, plans_fake_db):
     plan = plans_fake_db.first()
     response = client.get(f'/plan/delete/{plan.id}/')
     assert response.status_code == 302
-    assert Plan.objects.all().count() == 9
-    Plan.objects.filter(id=1).delete()
-    assert Plan.objects.all().count() == 8
 
 
 @pytest.mark.django_db
