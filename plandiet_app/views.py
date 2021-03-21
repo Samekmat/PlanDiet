@@ -222,17 +222,18 @@ def cpm_calc(goal, bmr, activity):
 
 class MacroCalculatorView(View):
     def get(self, request):
-        if CustomUser.is_authenticated:
+        try:
             current_user = request.user
             form = MacroCalculatorForm(initial={
                 'age': current_user.age,
                 'height': current_user.height,
                 'weight': current_user.weight,
                 'sex': current_user.sex,
-            })
+                })
             return render(request, 'macrocalculator.html', {'form': form})
-        form = MacroCalculatorForm()
-        return render(request, 'macrocalculator.html', {'form': form})
+        except:
+            form = MacroCalculatorForm()
+            return render(request, 'macrocalculator.html', {'form': form})
 
     def post(self, request):
         form = MacroCalculatorForm(request.POST)
