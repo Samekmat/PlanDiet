@@ -115,7 +115,7 @@ class DietView(View):
 
 
 class DietCreateView(PermissionRequiredMixin, CreateView):
-    permission_required = 'plandiet_app.add_diet'
+    # permission_required = 'plandiet_app.add_diet'
     form_class = DietModelForm
     template_name = 'diets/diet_create.html'
 
@@ -124,7 +124,7 @@ class DietCreateView(PermissionRequiredMixin, CreateView):
 
 
 class DietUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'plandiet_app.change_diet'
+    # permission_required = 'plandiet_app.change_diet'
     form_class = DietModelForm
     template_name = 'diets/diet_update.html'
 
@@ -134,7 +134,7 @@ class DietUpdateView(PermissionRequiredMixin, UpdateView):
 
 
 class DietDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'plandiet_app.delete_diet'
+    # permission_required = 'plandiet_app.delete_diet'
     template_name = 'diets/diet_delete.html'
     success_url = '/diet_list'
 
@@ -164,7 +164,7 @@ class PlanView(View):
 
 
 class PlanCreateView(PermissionRequiredMixin, CreateView):
-    permission_required = 'plandiet_app.add_plan'
+    # permission_required = 'plandiet_app.add_plan'
     form_class = PlanForm
     template_name = 'plans/plan_create.html'
 
@@ -173,7 +173,7 @@ class PlanCreateView(PermissionRequiredMixin, CreateView):
 
 
 class PlanUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'plandiet_app.change_plan'
+    # permission_required = 'plandiet_app.change_plan'
     form_class = PlanForm
     template_name = 'plans/plan_update.html'
 
@@ -183,7 +183,7 @@ class PlanUpdateView(PermissionRequiredMixin, UpdateView):
 
 
 class PlanDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'plandiet_app.delete_plan'
+    # permission_required = 'plandiet_app.delete_plan'
     template_name = 'plans/plan_delete.html'
     success_url = '/plan_list'
 
