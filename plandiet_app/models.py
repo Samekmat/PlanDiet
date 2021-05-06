@@ -3,17 +3,17 @@ from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 
 DIFFICULTIES = (
-    (1, "Beginner"),
-    (2, "Intermediate"),
-    (3, "Advanced"),
+    ('begnner', "Beginner"),
+    ('intermediate', "Intermediate"),
+    ('advanced', "Advanced"),
 )
 
 
 CATEGORIES = (
-    ('1', "Endurance"),
-    ('2', "Strength"),
-    ('3', "Flexibility"),
-    ('4', "Balance"),
+    ('endurance', "Endurance"),
+    ('strength', "Strength"),
+    ('flexibility', "Flexibility"),
+    ('balance', "Balance"),
 )
 
 
