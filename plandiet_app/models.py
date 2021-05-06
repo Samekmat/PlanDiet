@@ -10,10 +10,10 @@ DIFFICULTIES = (
 
 
 CATEGORIES = (
-    (1, "Endurance"),
-    (2, "Strength"),
-    (3, "Flexibility"),
-    (4, "Balance"),
+    ('1', "Endurance"),
+    ('2', "Strength"),
+    ('3', "Flexibility"),
+    ('4', "Balance"),
 )
 
 
@@ -44,6 +44,9 @@ class Category(models.Model):
 
 class MuscleGroup(models.Model):
     name = models.CharField(max_length=60)
+
+    def __str__(self):
+        return self.name
 
 
 class SportType(models.Model):
