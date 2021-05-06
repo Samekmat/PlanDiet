@@ -114,7 +114,8 @@ class DietView(View):
         return render(request, 'diets/diet.html', {'diet': diet})
 
 
-class DietCreateView(PermissionRequiredMixin, CreateView):
+class DietCreateView(CreateView):
+    # PermissionRequiredMixin,
     # permission_required = 'plandiet_app.add_diet'
     form_class = DietModelForm
     template_name = 'diets/diet_create.html'
@@ -123,7 +124,8 @@ class DietCreateView(PermissionRequiredMixin, CreateView):
         return reverse("diet", kwargs={'pk': self.object.pk})
 
 
-class DietUpdateView(PermissionRequiredMixin, UpdateView):
+class DietUpdateView(UpdateView):
+    # PermissionRequiredMixin,
     # permission_required = 'plandiet_app.change_diet'
     form_class = DietModelForm
     template_name = 'diets/diet_update.html'
@@ -133,7 +135,8 @@ class DietUpdateView(PermissionRequiredMixin, UpdateView):
         return get_object_or_404(Diet, pk=id_)
 
 
-class DietDeleteView(PermissionRequiredMixin, DeleteView):
+class DietDeleteView(DeleteView):
+    # PermissionRequiredMixin,
     # permission_required = 'plandiet_app.delete_diet'
     template_name = 'diets/diet_delete.html'
     success_url = '/diet_list'
@@ -163,7 +166,8 @@ class PlanView(View):
         return render(request, 'plans/plan.html', {'plan': plan})
 
 
-class PlanCreateView(PermissionRequiredMixin, CreateView):
+class PlanCreateView(CreateView):
+    # PermissionRequiredMixin,
     # permission_required = 'plandiet_app.add_plan'
     form_class = PlanForm
     template_name = 'plans/plan_create.html'
@@ -172,7 +176,8 @@ class PlanCreateView(PermissionRequiredMixin, CreateView):
         return reverse("plan", kwargs={'pk': self.object.pk})
 
 
-class PlanUpdateView(PermissionRequiredMixin, UpdateView):
+class PlanUpdateView(UpdateView):
+    # PermissionRequiredMixin,
     # permission_required = 'plandiet_app.change_plan'
     form_class = PlanForm
     template_name = 'plans/plan_update.html'
@@ -182,7 +187,8 @@ class PlanUpdateView(PermissionRequiredMixin, UpdateView):
         return get_object_or_404(Plan, pk=id_)
 
 
-class PlanDeleteView(PermissionRequiredMixin, DeleteView):
+class PlanDeleteView(DeleteView):
+    # PermissionRequiredMixin,
     # permission_required = 'plandiet_app.delete_plan'
     template_name = 'plans/plan_delete.html'
     success_url = '/plan_list'
