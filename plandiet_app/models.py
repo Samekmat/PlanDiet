@@ -41,6 +41,9 @@ class Category(models.Model):
     name = models.CharField(choices=CATEGORIES, max_length=60)
     description = models.CharField(max_length=500)
 
+    def __str__(self):
+        return self.name
+
 
 class MuscleGroup(models.Model):
     name = models.CharField(max_length=60)
