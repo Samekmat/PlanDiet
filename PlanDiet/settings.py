@@ -81,11 +81,17 @@ WSGI_APPLICATION = 'PlanDiet.wsgi.application'
 
 DATABASES = {
     'default': {
-        'HOST': '127.0.0.1',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'PlanDiet',
-        'USER': 'postgres',
-        'PASSWORD': 'mati2000',
+        # 'HOST': '127.0.0.1',
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'PlanDiet',
+        # 'USER': 'postgres',
+        # 'PASSWORD': 'mati2000',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dfnqpoggr6nl5c',
+        'HOST': 'ec2-107-20-153-39.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'vzpeuflvnkwknw',
+        'PASSWORD': '610c962102ba4ba62b05af5bd91c25ecc949d197054fa368ef79d9c47ad4df33',
     }
 }
 
