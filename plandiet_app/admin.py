@@ -17,6 +17,8 @@ class CustomUserAdmin(UserAdmin):
                     'height',
                     'weight',
                     'sex',
+                    'plan',
+                    'diet',
 
                 )
             }
